@@ -1,0 +1,421 @@
+:root {
+    --primary-color: #FF4B8B;
+    --secondary-color: #6A0DAD;
+    --background: #1A1A1A;
+    --text-light: #FFFFFF;
+    --gradient-1: linear-gradient(135deg, #FF4B8B 0%, #6A0DAD 100%);
+    --gradient-2: linear-gradient(45deg, #FF0080 0%, #7928CA 100%);
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text-light);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Navigation Styles */
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-button:hover {
+    background: rgba(255, 75, 139, 0.2);
+}
+
+.nav-button.primary {
+    background: var(--primary-color);
+}
+
+.nav-button.primary:hover {
+    background: #ff6b9e;
+}
+
+/* Screen Styles */
+.screen {
+    display: none;
+    height: 100vh;
+    padding: 80px 20px 20px;
+    text-align: center;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Welcome Screen Styles */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* Form Styles */
+.form-group {
+    margin: 15px 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    margin: 5px 0;
+    border: 2px solid rgba(255, 75, 139, 0.3);
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group select option {
+    background: #1A1A1A;
+    color: white;
+}
+
+/* Card Styles */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    width: 100%;
+    margin-top: 60px; /* Space for intensity meter */
+}
+
+.card {
+    position: relative;
+    width: 280px;
+    height: 400px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    margin: 10px;
+}
+
+.card .front,
+.card .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.card .front {
+    background: var(--gradient-1);
+    color: white;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.card .back {
+    background: var(--gradient-2);
+    transform: rotateY(180deg);
+    padding: 30px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Intensity Meter Styles */
+.intensity-meter {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 200px;
+}
+
+.intensity-label {
+    font-size: 0.9rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.intensity-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.intensity-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    width: 0;
+    transition: width 0.5s ease, background 0.5s ease;
+}
+
+.intensity-level {
+    font-size: 0.9rem;
+    color: white;
+    font-weight: 500;
+}
+
+/* Free Cards Notice */
+.free-cards-notice {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #1A1A1A;
+    padding: 25px;
+    border-radius: 15px;
+    min-width: 320px;
+    max-width: 400px;
+    position: relative;
+}
+
+/* Buttons */
+.cta-button, .submit-button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.cta-button:hover, 
+.submit-button:hover {
+    transform: scale(1.05);
+}
+
+/* Animated Gradient Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        315deg,
+        #1a1a1a 0%,
+        #FF4B8B 25%,
+        #6A0DAD 50%,
+        #FF4B8B 75%,
+        #1a1a1a 100%
+    );
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    z-index: -1;
+    opacity: 0.15;
+}
+
+/* Ambient Floating Bubbles */
+.ambient-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.floating-bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 75, 139, 0.8), rgba(106, 13, 173, 0.4));
+    animation: float 15s infinite;
+    opacity: 0.2;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1) rotate(120deg);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9) rotate(240deg);
+    }
+    100% {
+        transform: translate(0, 0) scale(1) rotate(360deg);
+    }
+}
+
+/* Music Control Button Styles */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+}
+
+.music-control i {
+    font-size: 1rem;
+}
+
+.music-control:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #ff6b9e, #8e44ad);
+}
+
+.music-control.playing {
+    background: linear-gradient(45deg, #4CAF50, #8BC34A);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .music-control {
+        top: 70px;
+        right: 10px;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .music-control i {
+        font-size: 0.9rem;
+    }
+}
+
+/* Credits Section - Only visible on welcome and form screens */
+.credits {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    text-align: center;
+    z-index: 1000;
+    max-width: 90%;
+    box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .credits {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+}
+   

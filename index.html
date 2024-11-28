@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love & Play - Couples Edition</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-left">
+            <button class="nav-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button class="nav-button" onclick="exitGame()">
+                <i class="fas fa-times"></i> Exit
+            </button>
+        </div>
+        <div class="nav-right">
+            <!-- Remove login and signup buttons -->
+        </div>
+    </div>
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <h1>Welcome to Sync</h1>
+        <p class="tagline">Turn tonight into an adventure...</p>
+        <button onclick="showPersonalizationForm()" class="cta-button">Start Your Journey</button>
+    </div>
+
+    <!-- Personalization Form -->
+    <div id="personalization-form" class="screen">
+        <h2>Let's Make This Personal</h2>
+        <form id="couple-form">
+            <div class="form-group">
+                <input type="text" placeholder="Partner 1's Name" required>
+                <input type="text" placeholder="Partner 2's Name" required>
+            </div>
+            <div class="form-group">
+                <select required>
+                    <option value="">Relationship Status</option>
+                    <option value="dating">Dating</option>
+                    <option value="married">Married</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select required>
+                    <option value="">Mood Tonight</option>
+                    <option value="romantic">Romantic</option>
+                    <option value="playful">Playful</option>
+                    <option value="adventurous">Adventurous</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-button">Create Our Experience</button>
+        </form>
+    </div>
+
+    <!-- Credits Section -->
+    <div class="credits">
+        <p>Created by Jaysinh & Pratham at SS Villa</p>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div class="cards-container">
+            <!-- Cards will be generated dynamically -->
+        </div>
+        <div class="free-cards-notice">
+            <p>10 free cards remaining</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-firestore.js"></script>
+</body>
+</html> 
